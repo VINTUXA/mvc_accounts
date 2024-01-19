@@ -11,14 +11,6 @@ public class ContactRowMapper implements RowMapper<Contact> {
 
     @Override
     public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
-//        ResultSetMetaData metaData = rs.getMetaData();
-        int columnCount = rs.getMetaData().getColumnCount();
-
-        for (int i = 1; i <= columnCount; i++) {
-            String columnName = rs.getMetaData().getColumnName(i);
-            System.out.println("Column name: " + columnName);
-        }
-
         Contact contact = new Contact();
 
         contact.setId(rs.getLong(ContactRowMapperFields.ID));

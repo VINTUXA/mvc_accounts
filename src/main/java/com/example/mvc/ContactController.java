@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class ContactController {
-
     private final ContactServiceImpl contactService;
-
-
 
     @GetMapping("/")
     public String index(Model model){
@@ -32,9 +29,7 @@ public class ContactController {
     @PostMapping("/contact/create")
     public String createContact(@ModelAttribute Contact contact){
         contact.setId(System.currentTimeMillis());
-//        System.out.println(contact);
         contactService.addContact(contact);
-//        contacts.add(contact);
         return "redirect:/";
     }
 
@@ -52,21 +47,10 @@ public class ContactController {
     @PostMapping("/contact/edit")
     public  String editContact(@ModelAttribute Contact contact){
         contactService.update(contact);
-//        Contact existedContact = findContactById(contact.getId());
-//        if(existedContact != null){
-//            existedContact.setFirstName(contact.getFirstName());
-//            existedContact.setLastName(contact.getLastName());
-//            existedContact.setPhoneNumber(contact.getPhoneNumber());
-//            existedContact.setEmail(contact.getEmail());
-//        }
         return "redirect:/";
     }
 
     private Contact findContactById(Long id){
-//        return contacts.stream()
-//                .filter(c -> c.getId().equals(id))
-//                .findFirst()
-//                .orElse(null);
         return contactService.findContactById(id);
     }
 
